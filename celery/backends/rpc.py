@@ -103,13 +103,6 @@ class RPCBackend(base.Backend, AsyncBackendMixin):
     supports_autoexpire = True
     supports_native_join = True
 
-    retry_policy = {
-        'max_retries': 20,
-        'interval_start': 0,
-        'interval_step': 1,
-        'interval_max': 1,
-    }
-
     class Consumer(kombu.Consumer):
         """Consumer that requires manual declaration of queues."""
 

@@ -54,13 +54,6 @@ class AMQPBackend(BaseBackend):
     supports_autoexpire = True
     supports_native_join = True
 
-    retry_policy = {
-        'max_retries': 20,
-        'interval_start': 0,
-        'interval_step': 1,
-        'interval_max': 1,
-    }
-
     def __init__(self, app, connection=None, exchange=None, exchange_type=None,
                  persistent=None, serializer=None, auto_delete=True, **kwargs):
         deprecated.warn(
