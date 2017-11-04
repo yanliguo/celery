@@ -298,6 +298,11 @@ class Request(object):
         if self._terminate_on_ack is not None:
             self.terminate(*self._terminate_on_ack)
 
+    def _mark_task_as_failed(self, exc):
+        self.task.backend.mark_as_failure(
+            self.id, exc, request=self, store_result=self.store_errors,
+        )
+
     def on_timeout(self, soft, timeout):
         """Handler called if the task times out."""
         task_ready(self)
@@ -310,9 +315,7 @@ class Request(object):
                   timeout, self.name, self.id)
             exc = TimeLimitExceeded(timeout)
 
-        self.task.backend.mark_as_failure(
-            self.id, exc, request=self, store_result=self.store_errors,
-        )
+        self._mark_task_as_failed(exc)
 
         if self.task.acks_late:
             self.acknowledge()
@@ -362,9 +365,7 @@ class Request(object):
                 'terminated', True, string(exc), False)
             send_failed_event = False  # already sent revoked event
         elif isinstance(exc, WorkerLostError) or not return_ok:
-            self.task.backend.mark_as_failure(
-                self.id, exc, request=self, store_result=self.store_errors,
-            )
+            self._mark_task_as_failed(exc)
         # (acks_late) acknowledge after result stored.
         if self.task.acks_late:
             requeue = not self.delivery_info.get('redelivered')
