@@ -202,6 +202,14 @@ class Request(object):
         self._apply_result = maybe(ref, result)
         return result
 
+    def _acknowledge_unless_acks_late(self):
+        if not self.task.acks_late:
+            self.acknowledge()
+
+    def _acknowledge_if_acks_late(self):
+        if self.task.acks_late:
+            self.acknowledge()
+
     def execute(self, loglevel=None, logfile=None):
         """Execute the task in a :func:`~celery.app.trace.trace_task`.
 
@@ -212,9 +220,7 @@ class Request(object):
         if self.revoked():
             return
 
-        # acknowledge task as being processed.
-        if not self.task.acks_late:
-            self.acknowledge()
+        self._acknowledge_unless_acks_late()
 
         request = self.request_dict
         # pylint: disable=unpacking-non-sequence
@@ -290,8 +296,7 @@ class Request(object):
         self.worker_pid = pid
         self.time_start = time_accepted
         task_accepted(self)
-        if not self.task.acks_late:
-            self.acknowledge()
+        self._acknowledge_unless_acks_late()
         self.send_event('task-started')
         if _does_debug:
             debug('Task accepted: %s[%s] pid:%r', self.name, self.id, pid)
@@ -317,8 +322,7 @@ class Request(object):
 
         self._mark_task_as_failed(exc)
 
-        if self.task.acks_late:
-            self.acknowledge()
+        self._acknowledge_if_acks_late()
 
     def on_success(self, failed__retval__runtime, **kwargs):
         """Handler called if the task was successfully processed."""
@@ -329,15 +333,13 @@ class Request(object):
             return self.on_failure(retval, return_ok=True)
         task_ready(self)
 
-        if self.task.acks_late:
-            self.acknowledge()
+        self._acknowledge_if_acks_late()
 
         self.send_event('task-succeeded', result=retval, runtime=runtime)
 
     def on_retry(self, exc_info):
         """Handler called if the task should be retried."""
-        if self.task.acks_late:
-            self.acknowledge()
+        self._acknowledge_if_acks_late()
 
         self.send_event('task-retried',
                         exception=safe_repr(exc_info.exception.exc),
