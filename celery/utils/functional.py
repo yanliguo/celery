@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Functional-style utilties."""
+"""Functional-style utilities."""
 from __future__ import absolute_import, print_function, unicode_literals
 
 import inspect

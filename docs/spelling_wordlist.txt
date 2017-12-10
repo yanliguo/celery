@@ -687,6 +687,7 @@ tuple
 tupled
 tuples
 Twomey
+typ
 Uddin
 uid
 Ullmann
