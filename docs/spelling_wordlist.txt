@@ -52,6 +52,7 @@ Artyom
 ascii
 Asif
 async
+asyncio
 Atanasov
 Attias
 Attwood
@@ -98,6 +99,7 @@ Bolshakov
 bool
 bootstep
 bootsteps
+boto
 Bouterse
 Bozorgkhan
 Brakhane
@@ -167,6 +169,7 @@ Danilo
 Daodao
 Dartiguelongue
 Datetime
+dateutil
 Davanum
 Davide
 Davidsson
@@ -210,6 +213,7 @@ Dygalo
 Dynamodb
 dzone
 Ekström
+elasticsearch
 Elasticsearch
 Éloi
 embeddable
@@ -293,6 +297,7 @@ Homebrew
 Honza
 hostname
 Hsad
+html
 http
 Hu
 Humpherys
@@ -525,6 +530,7 @@ protobuf
 Pulec
 py
 pyflakes
+pymongo
 Pyro
 QoS
 qpid
@@ -736,6 +742,7 @@ vhost
 Viamontes
 Vieira
 Viktor
+virtualenv
 Vitaly
 Vixie
 Voronov
