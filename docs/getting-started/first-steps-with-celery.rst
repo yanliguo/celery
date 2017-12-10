@@ -271,7 +271,7 @@ original traceback:
 .. code-block:: pycon
 
     >>> result.traceback
-    …
+
 
 See :mod:`celery.result` for the complete result object reference.
 
