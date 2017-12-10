@@ -12,14 +12,18 @@ os:
 stages:
   - lint
   - test
+  - integration-test
 env:
   global:
   - PYTHONUNBUFFERED=yes
   matrix:
   - MATRIX_TOXENV=unit
-  - MATRIX_TOXENV=integration-rabbitmq
-  - MATRIX_TOXENV=integration-redis
-  - MATRIX_TOXENV=integration-dynamodb
+  - &integration-test
+    MATRIX_TOXENV=integration-rabbitmq
+  - &integration-test
+    MATRIX_TOXENV=integration-redis
+  - &integration-test
+    MATRIX_TOXENV=integration-dynamodb
 matrix:
   include:
   - python: '3.5'
