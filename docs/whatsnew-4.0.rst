@@ -1831,7 +1831,7 @@ Worker
 
     Contributed by **Alan Justino**.
 
-- New :data:`celery.worker.state.requests` enables O(1) loookup
+- New :data:`celery.worker.state.requests` enables O(1) lookup
   of active/reserved tasks by id.
 
 - Auto-scale didn't always update keep-alive when scaling down.
