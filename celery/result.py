@@ -459,7 +459,7 @@ class ResultSet(ResultBase):
     """A collection of results.
 
     Arguments:
-        results (Sequence[AsyncResult]): List of result instances.
+        results (Sequence[celery.result.AsyncResult]): List of result instances.
     """
 
     _app = None
@@ -477,7 +477,7 @@ class ResultSet(ResultBase):
             self._on_full.then(promise(self.on_ready, weak=True))
 
     def add(self, result):
-        """Add :class:`AsyncResult` as a new member of the set.
+        """Add :class:`celery.result.AsyncResult` as a new member of the set.
 
         Does nothing if the result is already a member.
         """
@@ -820,7 +820,7 @@ class ResultSet(ResultBase):
 @Thenable.register
 @python_2_unicode_compatible
 class GroupResult(ResultSet):
-    """Like :class:`ResultSet`, but with an associated id.
+    """Like :class:`celery.result.ResultSet`, but with an associated id.
 
     This type is returned by :class:`~celery.group`.
 
@@ -829,7 +829,7 @@ class GroupResult(ResultSet):
 
     Arguments:
         id (str): The id of the group.
-        results (Sequence[AsyncResult]): List of result instances.
+        results (Sequence[celery.result.AsyncResult]): List of result instances.
         parent (ResultBase): Parent result of this group.
     """
 
