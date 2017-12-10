@@ -407,6 +407,7 @@ Maślanka
 Matsuzaki
 Maxime
 maxlen
+maxsize
 McGregor
 Melin
 memcache
@@ -770,4 +771,3 @@ Zoë
 Zookeeper
 Zoran
 許邱翔
-maxsize
