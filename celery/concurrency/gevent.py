@@ -75,7 +75,7 @@ class Timer(_timer.Timer):
 
 
 class TaskPool(base.BasePool):
-    """GEvent Pool."""
+    """Gevent Pool."""
 
     Timer = Timer
 
