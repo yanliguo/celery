@@ -98,7 +98,7 @@ class Signature(dict):
             >>> add.s(1, kw=2)
 
     - the ``.s()`` shortcut does not allow you to specify execution options
-      but there's a chaning `.set` method that returns the signature:
+      but there's a chaining `.set` method that returns the signature:
 
         .. code-block:: pycon
 
@@ -785,7 +785,7 @@ class chain(_chain):
 
     Returns:
         ~celery.chain: A lazy signature that can be called to apply the first
-            task in the chain.  When that task succeeed the next task in the
+            task in the chain.  When that task succeeded the next task in the
             chain is applied, and so on.
     """
 

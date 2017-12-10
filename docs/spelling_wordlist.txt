@@ -27,6 +27,7 @@ Almeer
 Ameriks
 Amir
 amongst
+amq
 amqp
 AMQP
 Anand
@@ -207,6 +208,7 @@ Duggan
 Duryee
 Dygalo
 Dynamodb
+dzone
 Ekström
 Elasticsearch
 Éloi
@@ -427,6 +429,7 @@ metavar
 Metzlar
 Mher
 Mickaël
+might've
 Mikalajūnas
 Mikko
 Milen
@@ -616,6 +619,7 @@ serializing
 Seungha
 Sharafutdinov
 Shigapov
+should've
 Sibson
 Siddiqui
 Sklar
@@ -669,6 +673,7 @@ taskset
 Taub
 Tayfun
 Tewfik
+that're
 Theo
 Thrift
 Tiago
@@ -745,6 +750,7 @@ weakrefs
 Webber
 webhook
 webhooks
+we'd've
 Werkzeug
 Whewell
 Whitlock
@@ -762,9 +768,11 @@ Wulf
 Wun
 Xie
 Xin
+xref
 yaml
 Yan
 Yaroslav
+you'd've
 Younkins
 Yu
 Yurchuk

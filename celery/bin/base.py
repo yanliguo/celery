@@ -145,7 +145,7 @@ class Command(object):
 
     Arguments:
         app (~@Celery): The app to use.
-        get_app (Callable): Fucntion returning the current app
+        get_app (Callable): Function returning the current app
             when no app provided.
     """
 

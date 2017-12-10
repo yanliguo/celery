@@ -48,7 +48,7 @@ def get_exchange(conn):
     """Get exchange used for sending events.
 
     Arguments:
-        conn (kombu.Connection): Connection used for sending/receving events.
+        conn (kombu.Connection): Connection used for sending/receiving events.
 
     Note:
         The event type changes if Redis is used as the transport
