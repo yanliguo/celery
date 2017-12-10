@@ -498,6 +498,7 @@ pong
 Pradet
 Pravec
 pre
+preconfiguration
 prefetch
 prefetched
 prefetching
