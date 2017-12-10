@@ -19,6 +19,7 @@ globals().update(conf.build_config(
     html_favicon='images/favicon.ico',
     html_prepend_sidebars=['sidebardonations.html'],
     extra_extensions=[
+        'sphinxcontrib.spelling',
         'sphinx.ext.napoleon',
         'celery.contrib.sphinx',
         'celerydocs',
