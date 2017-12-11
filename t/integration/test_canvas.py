@@ -36,8 +36,11 @@ class test_chain:
     def test_group_chord_group_chain(self, manager):
         from celery.five import bytes_if_py2
 
-        if not manager.app.conf.result_backend.startswith('redis'):
-            raise pytest.skip('Requires redis result backend.')
+        try:
+            manager.app.backend.ensure_chords_allowed()
+        except NotImplementedError as e:
+            raise pytest.skip(e.args[0])
+
         redis_connection = StrictRedis()
         redis_connection.delete('redis-echo')
         before = group(redis_echo.si('before {}'.format(i)) for i in range(3))
@@ -63,8 +66,10 @@ class test_chain:
     def test_second_order_replace(self, manager):
         from celery.five import bytes_if_py2
 
-        if not manager.app.conf.result_backend.startswith('redis'):
-            raise pytest.skip('Requires redis result backend.')
+        try:
+            manager.app.backend.ensure_chords_allowed()
+        except NotImplementedError as e:
+            raise pytest.skip(e.args[0])
 
         redis_connection = StrictRedis()
         redis_connection.delete('redis-echo')
@@ -113,8 +118,10 @@ class test_group:
 
     @flaky
     def test_empty_group_result(self, manager):
-        if not manager.app.conf.result_backend.startswith('redis'):
-            raise pytest.skip('Requires redis result backend.')
+        try:
+            manager.app.backend.ensure_chords_allowed()
+        except NotImplementedError as e:
+            raise pytest.skip(e.args[0])
 
         task = group([])
         result = task.apply_async()
@@ -172,8 +179,11 @@ class test_chord:
 
     @flaky
     def test_group_chain(self, manager):
-        if not manager.app.conf.result_backend.startswith('redis'):
-            raise pytest.skip('Requires redis result backend.')
+        try:
+            manager.app.backend.ensure_chords_allowed()
+        except NotImplementedError as e:
+            raise pytest.skip(e.args[0])
+
         c = (
             add.s(2, 2) |
             group(add.s(i) for i in range(4)) |
@@ -191,6 +201,7 @@ class test_chord:
 
         if not manager.app.backend.supports_native_join:
             raise pytest.skip('Requires native join support.')
+
         c = chain(
             add.si(1, 0),
             group(
@@ -210,8 +221,11 @@ class test_chord:
 
     @flaky
     def test_parent_ids(self, manager):
-        if not manager.app.conf.result_backend.startswith('redis'):
-            raise pytest.skip('Requires redis result backend.')
+        try:
+            manager.app.backend.ensure_chords_allowed()
+        except NotImplementedError as e:
+            raise pytest.skip(e.args[0])
+
         root = ids.si(i=1)
         expected_root_id = root.freeze().id
         g = chain(
@@ -225,8 +239,11 @@ class test_chord:
 
     @flaky
     def test_parent_ids__OR(self, manager):
-        if not manager.app.conf.result_backend.startswith('redis'):
-            raise pytest.skip('Requires redis result backend.')
+        try:
+            manager.app.backend.ensure_chords_allowed()
+        except NotImplementedError as e:
+            raise pytest.skip(e.args[0])
+
         root = ids.si(i=1)
         expected_root_id = root.freeze().id
         g = (
