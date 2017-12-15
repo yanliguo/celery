@@ -1,8 +1,11 @@
 """Worker Task Consumer Bootstep."""
 from __future__ import absolute_import, unicode_literals
-from kombu.common import QoS, ignore_errors
+
+from kombu.common import ignore_errors, QoS
+
 from celery import bootsteps
 from celery.utils.log import get_logger
+from celery.worker.consumer.pack import PackQoS
 from .mingle import Mingle
 
 __all__ = ['Tasks']
@@ -42,7 +45,7 @@ class Tasks(bootsteps.StartStopStep):
                 prefetch_count=prefetch_count,
                 apply_global=qos_global,
             )
-        c.qos = QoS(set_prefetch_count, c.initial_prefetch_count)
+        c.qos = PackQoS(set_prefetch_count, c.initial_prefetch_count)
 
     def stop(self, c):
         """Stop task consumer."""
